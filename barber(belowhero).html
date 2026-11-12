@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber Corporation</title>
+
+    <style>
+        /* ================= RESET ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* ================= TITLE ABOVE HERO ================= */
+        .top-intro {
+            position: relative;
+            padding: 80px 60px 35px;
+            text-align: center;
+            background: linear-gradient(270deg, #312c2c, #686363, #efefef, #dfd0d0);
+            background-size: 600% 100%;
+            animation: topGradientLeft 14s ease-in-out infinite;
+        }
+
+        .top-intro h1 {
+            font-size: 60px;
+            font-weight: 900;
+            letter-spacing: 6px;
+            margin-bottom: 14px;
+            color: #f78a05;
+        }
+
+        .top-intro p {
+            font-size: 19px;
+            opacity: 0.75;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #ffb347;
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            position: relative;
+            height: 65vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, #7a0c14, #a4161a, #c9181d, #8c0f14);
+            background-size: 400% 100%;
+            animation: royalMoveRight 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes royalMoveRight {
+            from {
+                background-position: 0% 50%;
+            }
+
+            to {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* ================= SLIDER ================= */
+        .slider-wrapper {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .slider {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .slide {
+            min-width: calc(100% / 3);
+            padding: 15px;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        /* ================= EXPLORE SECTION ================= */
+        .explore-section {
+            text-align: center;
+            padding: 80px 20px 40px;
+            background: linear-gradient(135deg, #f8e8ff, #f3dcff);
+
+        }
+
+        .explore-section h2 {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #111111;
+            margin-bottom: 12px;
+        }
+
+        .explore-section p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* ================= WORK GALLERY ================= */
+
+        .work-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .work-card img:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1100px) {
+            .slide {
+                min-width: 100%;
+            }
+
+            .slide img {
+                height: 280px;
+            }
+
+            .work-gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .work-gallery {
+                grid-template-columns: repeat(1, 1fr);
+                padding: 40px 20px;
+            }
+        }
+
+        @keyframes topGradientLeft {
+            0% {
+                background-position: 100% 50%;
+            }
+
+            50% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .work-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 images per row */
+            gap: 30px;
+            padding: 60px 80px 100px;
+            background: #e6fffa;
+        }
+
+        .work-card {
+            text-align: center;
+        }
+
+        .work-card img {
+            width: 100%;
+            height: 350px;
+            /* bigger image */
+            border-radius: 18px;
+            object-fit: cover;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .work-card img:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .work-desc {
+            font-size: 16px;
+            color: #333;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .work-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .work-gallery {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+            }
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            background: #111;
+            color: #fff;
+            padding: 60px 80px 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #ffb347;
+        }
+
+        .footer h4 {
+            margin-bottom: 12px;
+            color: #f78a05;
+        }
+
+        .footer p,
+        .footer li {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer ul li a {
+            text-decoration: none;
+            color: #ccc;
+        }
+
+        .footer ul li a:hover {
+            color: #ffb347;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 13px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= TITLE ================= -->
+    <section class="top-intro">
+        <h1>BARBER CORPORATION</h1>
+        <p>Where precision grooming meets modern craftsmanship</p>
+    </section>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <div class="slider-wrapper">
+            <div class="slider">
+                <div class="slider-track" id="sliderTrack">
+
+                    <!-- Men Haircut -->
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1">
+                    </div>
+
+                    <!-- Women Haircut -->
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/693007636/photo/hairstylist-ironing-some-hair.jpg?s=612x612&w=0&k=20&c=9HMBAfSSOLXc0ZEYt3PI-tTSgDGuApaH2I1v84xRmtM=">
+                    </div>
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/1264558447/photo/woman-with-protective-mask-receiving-treatment-in-hair-salon.jpg?s=612x612&w=0&k=20&c=6VHHZQ65pm8YdCFzKYNgbbsjCazMWXPrnsv-ObIJoJM=">
+                    </div>
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/947997596/photo/young-stylist-straightening-a-clients-hair-in-her-salon.jpg?s=612x612&w=0&k=20&c=0AWHMeY3fHd37kM1NpLEPnV70zeJy6sQ8LmGas0urOI=">
+                    </div>
+
+                    <!-- Beard Grooming -->
+
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/665013816/photo/retro-shaving-with-foam-in-barber-shop.jpg?s=612x612&w=0&k=20&c=SfVA1jkwePS5-EnbAttRFcPege2cB-AHrvFO8v4bVUI=">
+                    </div>
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/1354214535/photo/man-looking-herself-in-the-mirror-while-sitting-in-chair-at-a-barbershop.jpg?s=612x612&w=0&k=20&c=vsoUyCeKp1fXItn463AscGcD54BLMCw0m5Y00jed2Sk=">
+                    </div>
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/2207874177/photo/beard-grooming-at-a-hip-barber-shop.jpg?s=612x612&w=0&k=20&c=-BqA_pgcrv4_wPUj6X4skrYf4jrZQas6qZiPBA8OHfU=">
+                    </div>
+
+                    <!-- Men Hair Coloring -->
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/1212832699/photo/studio-portrait-of-a-teenager-boy-with-green-hair-on-a-brown-background.jpg?s=612x612&w=0&k=20&c=nE9gJmYmOkgBO679XhOy-E-a-7N_Uy7BDoyf9zEXifs=">
+                    </div>
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/2222534668/photo/studio-portrait-of-a-young-male-model-with-green-hair-on-a-black-background.jpg?s=612x612&w=0&k=20&c=FJbUIERZvMbL8wzHkCvjcOWd4mIMozAWybXGccjC54o=">
+                    </div>
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/1272968814/photo/teenage-lad-with-dyed-red-hair.jpg?s=612x612&w=0&k=20&c=P66uY73AaFIjjieN-8KSzQBZnpvxFkcSv843vcNLzr8=">
+                    </div>
+                    <!-- Women Hair Coloring -->
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/1139677798/photo/beauty-fashion-model-woman-with-colorful-dyed-hair.jpg?s=612x612&w=0&k=20&c=lfv7DHFAyUTg-9P3hbMh5rM0EcbwsOPS0fjfDrNsFFw=">
+                    </div>
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/1026077276/photo/portrait-of-a-woman-with-bright-colored-flying-hair-all-shades-of-purple-hair-coloring.jpg?s=612x612&w=0&k=20&c=rRMXy3kkVk5ZWi-CGQfIdVP1dyQNYFj0HfbvbovCwfc=">
+                    </div>
+                    <div class="slide">
+                        <img
+                            src="https://media.istockphoto.com/id/538570714/photo/girl-with-curly-hair.jpg?s=612x612&w=0&k=20&c=kOSLBgbamSsSSRclFSNucjq6J7Y97QLhOUyBpy_UNsQ=">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= EXPLORE OUR WORLD ================= -->
+    <section class="explore-section">
+        <h2>EXPLORE OUR WORLD</h2>
+        <p>Crafted services. Modern style. Premium experience.</p>
+    </section>
+
+    <!-- ================= WORK GALLERY ================= -->
+    <section class="work-gallery">
+
+        <!-- Male Haircut (2) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/830428214/photo/young-man-in-barber-shop-hair-care-service-concept.jpg?s=612x612&w=0&k=20&c=fnWWIrttlQKenM7bIODgxVYYt1KS8RWh7ANCQHakiU8=">
+
+            <p class="work-desc">Executive Cut</p>
+        </div>
+
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/932956896/photo/half-faced-portrait-of-serious-concentrated-confident-brutal-chic-handsome-attractive-classy.jpg?s=612x612&w=0&k=20&c=ytO_xnf2pC7CFnXbvAYzr0Djt3mKjj895DvgzFjTibI=">
+
+            <p class="work-desc">Precision Men’s Styling</p>
+
+        </div>
+
+        <!-- Female Haircut (2) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1678702802/photo/beautiful-young-woman-getting-her-hair-cut.jpg?s=612x612&w=0&k=20&c=PHJ-zi1iflCMh0sLON0VxrvMa7ijBlFqWZLq8bd_i4Y=">
+
+            <p class="work-desc">Elite Women’s Styling</p>
+
+        </div>
+
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1428510458/photo/woman-with-healthy-natural-and-ginger-hair-with-relax-curly-auburn-or-red-beauty-hairstyle.jpg?s=612x612&w=0&k=20&c=r-xd-q1NI3JtQkU3_BoTWbP0Fhcs18p-mToNFZn2HJ8=">
+
+            <p class="work-desc">Luxury Layered Cut</p>
+
+        </div>
+
+        <!-- Beard Grooming (2) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/506514230/photo/beard-grooming.jpg?s=612x612&w=0&k=20&c=QDwo1L8-f3gu7mcHf00Az84fVU8oNpQLgvUw6eGPEkc=">
+
+            <p class="work-desc">Royal Beard Craft</p>
+
+        </div>
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/939529232/photo/beard-styling-and-cut-barber-shop-concept-close-up-cropped-profile-photo-of-a-styling-of-a-red.jpg?s=612x612&w=0&k=20&c=enRvE7Nj9dM0AyM070r0FgXcAnS8rY1xbZvxPXDCk7s=">
+
+            <p class="work-desc">Beard Sculpting</p>
+
+        </div>
+
+        <!-- Hair Coloring (2) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1355731292/photo/beautiful-woman-with-multi-colored-hair-and-creative-make-up-and-hairstyle-beauty-face.jpg?s=612x612&w=0&k=20&c=Sx3uYgTgzAVOp23X4Rjp2fEQPPdjFU-H57FYDgAu6pE=">
+
+            <p class="work-desc">Creative Color Lab</p>
+
+        </div>
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1014165094/photo/portrait-of-a-woman-with-bright-colored-flying-hair-all-shades-of-purple-hair-coloring.jpg?s=612x612&w=0&k=20&c=2U0D5ApAv9i0Xmx2C3UeqJKtQ37pDOq2OjyW0RDHxaI=">
+
+            <p class="work-desc">Color Fusion Studio</p>
+
+        </div>
+
+        <!-- Waxing (1) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1219595430/photo/beautician-removing-eyebrow-hairs-with-wax-stock-photo.jpg?s=612x612&w=0&k=20&c=-ZLU9fYE--WuKQmo1PPBhWDTfQ_unGBan81MsD-N9Hs=">
+
+            <p class="work-desc">Silk Touch Waxing</p>
+
+        </div>
+
+        <!-- Threading (1) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1179452341/photo/eyebrow-correction-with-a-white-thread.jpg?s=612x612&w=0&k=20&c=EaG6I4m2W0g4MJQIjOSJWOn-z9nnV9HveG5omsvuEx0=">
+
+            <p class="work-desc">Precision Brow Shaping</p>
+
+        </div>
+
+        <!-- Manicure (2) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1461739326/photo/flower-nail-design-dark-blue-manicure-on-sharp-long-nails-close-up-on-a-flower-background.jpg?s=612x612&w=0&k=20&c=gG8toZaa__J2VfRvyRgViDXR0x3PeHTjjHPKJ8fWtNk=">
+
+            <p class="work-desc">Luxury Nail Artistry</p>
+
+        </div>
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/859346502/photo/best-manicure-design.jpg?s=612x612&w=0&k=20&c=-wOeJEUs2P8upQF4MYTLM4vLYMQVyTOau3RF_o9lk1I=">
+
+            <p class=" work-desc">Polish Perfection</p>
+
+        </div>
+
+        <!-- Pedicure (2) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/532105836/photo/female-feet-at-spa-salon-on-pedicure-procedure.jpg?s=612x612&w=0&k=20&c=NOexmTYkxtJrj43DDE3eeB49Kl6mXG5TScBCzgQla7c=">
+
+            <p class=" work-desc">Diamond Spa Pedicure</p>
+        </div>
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/2014538393/photo/woman-soaks-her-feet-in-a-bowl-with-flower-petals.jpg?s=612x612&w=0&k=20&c=xaNtDtCmGtwsykU1sZ3f_vc1LvV2dk8OdJ0aFaIVJrw=">
+
+            <p class=" work-desc">Healing Sole Treatment</p>
+
+        </div>
+
+        <!-- Niche Hair Removal (1) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1202793678/photo/woman-plucks-out-leg-hair-with-tweezers.jpg?s=612x612&w=0&k=20&c=Wv_vMkleEozKErvS0YVYqbC33iMtjxjm-QkNHkdJE8s=">
+
+            <p class="work-desc">Advanced Hair Removal</p>
+
+        </div>
+
+        <!-- Steam Facials (1) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1126086639/photo/the-procedure-of-steaming-the-skin-of-the-face-of-a-young-woman-before-cleaning-the-skin.jpg?s=612x612&w=0&k=20&c=rosszfdhVMQHaaU4vjHh7aoIqwK9864RdIHDj9f0jCs=">
+
+            <p class="work-desc">Steam Renewal Therapy</p>
+
+        </div>
+
+        <!-- Hair Tattoos (2) -->
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1655087156/photo/the-artful-barber.jpg?s=612x612&w=0&k=20&c=ALDq-f6P_7TOkAart9vtXYpq64iZBw22JLZskBGsAgI=">
+
+            <p class="work-desc">Artistic Hair Design</p>
+
+        </div>
+        <div class="work-card">
+            <img
+                src="https://media.istockphoto.com/id/1281721303/photo/back-close-up-cropped-view-photo-of-modern-free-style-hair-cut-in-process-copy-space.jpg?s=612x612&w=0&k=20&c=LTp9AZ7luzUJgyka4ziaQVD1wOQZVUhMbjUV67pjuxY=">
+
+            <p class="work-desc"> Creative Fade Art</p>
+
+
+        </div>
+
+    </section>
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <h3>BARBER CORPORATION</h3>
+                <p>Precision grooming. Modern style. Premium experience.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Visit Shop</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p>Email: info@barbercorp.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>🏢 Over 999+ Local Customer👥 </p>
+                <p>RATING: ⭐⭐⭐⭐⭐ 4.9 ✨</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Barber Corporation. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const track = document.getElementById("sliderTrack");
+        const slides = document.querySelectorAll(".slide");
+        let index = 0;
+        const slidesToShow = 3;
+        const totalSlides = slides.length;
+        const slideTime = 2000;
+        const transitionTime = 800;
+
+        function moveSlider() {
+            index += slidesToShow;
+            const slideWidth = slides[0].offsetWidth;
+            track.style.transition = "transform 0.8s ease";
+            track.style.transform = `translateX(-${index * slideWidth}px)`;
+
+            if (index >= totalSlides) {
+                setTimeout(() => {
+                    track.style.transition = "none";
+                    index = 0;
+                    track.style.transform = "translateX(0px)";
+                }, transitionTime);
+            }
+        }
+
+        setInterval(moveSlider, slideTime);
+
+    </script>
+
+</body>
+
+</html>
